@@ -1,0 +1,41 @@
+[2025-10-01 18:01:04] Exportado Excel RAW → sales_data_sample.xlsx (filas=2823)
+[2025-10-01 18:01:04] Valores nulos por columna (TOP 10 con más nulos):
+[2025-10-01 18:01:04]   - ADDRESSLINE2: 2521
+[2025-10-01 18:01:04]   - STATE: 1486
+[2025-10-01 18:01:04]   - TERRITORY: 1074
+[2025-10-01 18:01:04]   - POSTALCODE: 76
+[2025-10-01 18:01:04]   - ORDERNUMBER: 0
+[2025-10-01 18:01:04]   - CUSTOMERNAME: 0
+[2025-10-01 18:01:04]   - CONTACTFIRSTNAME: 0
+[2025-10-01 18:01:04]   - CONTACTLASTNAME: 0
+[2025-10-01 18:01:04]   - COUNTRY: 0
+[2025-10-01 18:01:04]   - CITY: 0
+[2025-10-01 18:01:04] Guardado reporte de nulos → nulls_por_columna.csv
+[2025-10-01 18:01:04] Duplicados eliminados: 0
+[2025-10-01 18:01:04] Filas eliminadas por producto/cantidad inválida: 0
+[2025-10-01 18:01:04] Top 10 productos por unidades:
+[2025-10-01 18:01:04]   - S18_3232: 1774 unidades
+[2025-10-01 18:01:04]   - S24_3856: 1052 unidades
+[2025-10-01 18:01:04]   - S18_4600: 1031 unidades
+[2025-10-01 18:01:04]   - S700_4002: 1029 unidades
+[2025-10-01 18:01:04]   - S12_4473: 1024 unidades
+[2025-10-01 18:01:04]   - S24_3949: 1008 unidades
+[2025-10-01 18:01:04]   - S50_1341: 999 unidades
+[2025-10-01 18:01:04]   - S18_1097: 999 unidades
+[2025-10-01 18:01:04]   - S18_2432: 998 unidades
+[2025-10-01 18:01:04]   - S18_1342: 997 unidades
+[2025-10-01 18:01:04] Top 10 productos por ventas ($):
+[2025-10-01 18:01:04]   - S18_3232: $288,245.42
+[2025-10-01 18:01:04]   - S10_1949: $191,073.03
+[2025-10-01 18:01:04]   - S10_4698: $170,401.07
+[2025-10-01 18:01:04]   - S12_1108: $168,585.32
+[2025-10-01 18:01:04]   - S18_2238: $154,623.95
+[2025-10-01 18:01:04]   - S12_3891: $145,332.04
+[2025-10-01 18:01:04]   - S24_3856: $140,626.90
+[2025-10-01 18:01:04]   - S12_2823: $140,006.16
+[2025-10-01 18:01:04]   - S18_1662: $139,421.97
+[2025-10-01 18:01:04]   - S12_1099: $137,177.01
+[2025-10-01 18:01:04] Gráfico guardado → charts/top_10_productos_unidades.png
+[2025-10-01 18:01:04] Gráfico guardado → charts/top_10_productos_ventas.png
+[2025-10-01 18:01:04] Dataset limpio guardado → sales_data_sample_clean.csv y sales_data_sample_clean.xlsx (filas=2823)
+[2025-10-01 18:01:04] Análisis completado ✅
