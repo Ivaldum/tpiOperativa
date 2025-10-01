@@ -14,8 +14,9 @@ XLSX_CLEAN     = "sales_data_sample_clean.xlsx"
 CONCLUSIONES   = "conclusiones.txt"
 TOP_N          = 10
 
-# Columnas esperadas (dataset clásico de ventas muestra/productos)
+# Columnas esperadas
 COL_PRODUCT    = "PRODUCTCODE"
+COL_LINE       = "PRODUCTLINE"
 COL_QTY        = "QUANTITYORDERED"
 COL_PRICE      = "PRICEEACH"
 COL_SALES      = "SALES"           # Si no existe, se calculará como qty*price
@@ -33,6 +34,20 @@ def ensure_columns(df: pd.DataFrame, required: list):
     missing = [c for c in required if c not in df.columns]
     if missing:
         raise ValueError(f"Faltan columnas requeridas: {missing}")
+
+def productline_by_code(df: pd.DataFrame) -> dict:
+    """Construye un mapeo PRODUCTCODE -> PRODUCTLINE (toma la moda o primer no-nulo)."""
+    if COL_LINE not in df.columns:
+        return {}
+    mapping = {}
+    for code, sub in df[[COL_PRODUCT, COL_LINE]].dropna(subset=[COL_PRODUCT]).groupby(COL_PRODUCT):
+        s = sub[COL_LINE].dropna()
+        if len(s) == 0:
+            mapping[code] = None
+        else:
+            mode = s.mode()
+            mapping[code] = mode.iloc[0] if not mode.empty else s.iloc[0]
+    return mapping
 
 def main():
     if not os.path.exists(CSV_IN):
@@ -86,6 +101,7 @@ def main():
 
     # 5) Top productos
     ensure_columns(df, [COL_PRODUCT])
+    code_to_line = productline_by_code(df)
 
     top_qty = None
     if COL_QTY in df.columns:
@@ -97,7 +113,8 @@ def main():
         )
         log(f"Top {TOP_N} productos por unidades:")
         for p, v in top_qty.items():
-            log(f"  - {p}: {int(v)} unidades")
+            pl = code_to_line.get(p, "?")
+            log(f"  - {p} [{pl}]: {int(v)} unidades")
 
     top_sales = None
     if COL_SALES in df.columns:
@@ -109,16 +126,19 @@ def main():
         )
         log(f"Top {TOP_N} productos por ventas ($):")
         for p, v in top_sales.items():
-            log(f"  - {p}: ${float(v):,.2f}")
+            pl = code_to_line.get(p, "?")
+            log(f"  - {p} [{pl}]: ${float(v):,.2f}")
 
     # 6) Gráficos Top N (unidades y ventas)
     os.makedirs("charts", exist_ok=True)
 
     if top_qty is not None and len(top_qty) > 0:
         plt.figure(figsize=(10, 6))
-        top_qty.plot(kind="bar")
+        # Re-etiquetar el índice con PRODUCTCODE + PRODUCTLINE
+        top_qty_named = top_qty.rename(index=lambda code: f"{code} – {code_to_line.get(code, '')}")
+        top_qty_named.plot(kind="bar")
         plt.title(f"Top {TOP_N} productos por unidades")
-        plt.xlabel("Producto")
+        plt.xlabel("Producto (código – línea)")
         plt.ylabel("Unidades vendidas")
         plt.xticks(rotation=45, ha="right")
         plt.tight_layout()
@@ -129,9 +149,10 @@ def main():
 
     if top_sales is not None and len(top_sales) > 0:
         plt.figure(figsize=(10, 6))
-        top_sales.plot(kind="bar")
+        top_sales_named = top_sales.rename(index=lambda code: f"{code} – {code_to_line.get(code, '')}")
+        top_sales_named.plot(kind="bar")
         plt.title(f"Top {TOP_N} productos por ventas ($)")
-        plt.xlabel("Producto")
+        plt.xlabel("Producto (código – línea)")
         plt.ylabel("Ventas ($)")
         plt.xticks(rotation=45, ha="right")
         plt.tight_layout()
@@ -145,9 +166,10 @@ def main():
     df.to_excel(XLSX_CLEAN, index=False)
     log(f"Dataset limpio guardado → {CSV_CLEAN} y {XLSX_CLEAN} (filas={len(df)})")
 
-    # 8) Análisis diario de los 4 productos con más ventas ($)
+    # 8) Análisis diario de los 4 productos con más ventas ($) mostrando PRODUCTLINE
     if top_sales is not None and len(top_sales) >= 4:
-        top4 = top_sales.head(4).index.tolist()
+        top4_codes = top_sales.head(4).index.tolist()
+
         # Convertir a fecha
         if COL_ORDERDATE in df.columns:
             df[COL_ORDERDATE] = pd.to_datetime(df[COL_ORDERDATE], errors="coerce")
@@ -157,8 +179,11 @@ def main():
             return
 
         # Filtrar top 4
-        df_top4 = df[df[COL_PRODUCT].isin(top4)].copy()
+        df_top4 = df[df[COL_PRODUCT].isin(top4_codes)].copy()
         df_top4 = df_top4[df_top4[COL_ORDERDATE].notna()]
+
+        # Agregar PRODUCTLINE a partir del mapeo (por si hay nulos)
+        df_top4[COL_LINE] = df_top4[COL_PRODUCT].map(code_to_line)
 
         # Agrupar por día y producto
         ventas_diarias = (
@@ -168,14 +193,18 @@ def main():
             .rename(columns={COL_ORDERDATE: "DATE", COL_PRODUCT: "PRODUCT", COL_SALES: "SALES"})
         )
 
-        ventas_diarias.to_csv("ventas_diarias_top4.csv", index=False)
-        log("Guardado CSV → ventas_diarias_top4.csv")
+        # Añadir PRODUCTLINE por PRODUCT
+        ventas_diarias[COL_LINE] = ventas_diarias["PRODUCT"].map(code_to_line)
 
-        # Gráfico comparativo: los 4 productos juntos (una curva por producto)
+        ventas_diarias.to_csv("ventas_diarias_top4.csv", index=False)
+        log("Guardado CSV → ventas_diarias_top4.csv (incluye PRODUCTLINE)")
+
+        # Gráfico comparativo: los 4 productos juntos
         plt.figure(figsize=(12, 6))
-        for prod in top4:
-            subset = ventas_diarias[ventas_diarias["PRODUCT"] == prod]
-            plt.plot(subset["DATE"], subset["SALES"], marker="o", label=prod)
+        for code in top4_codes:
+            label = f"{code} – {code_to_line.get(code, '')}"
+            subset = ventas_diarias[ventas_diarias["PRODUCT"] == code]
+            plt.plot(subset["DATE"], subset["SALES"], marker="o", label=label)
         plt.title("Ventas diarias - Top 4 productos ($)")
         plt.xlabel("Fecha")
         plt.ylabel("Ventas ($)")
@@ -187,17 +216,18 @@ def main():
         plt.close()
         log(f"Gráfico comparativo guardado → {comp_png}")
 
-        # Gráfico individual por producto
-        for prod in top4:
-            subset = ventas_diarias[ventas_diarias["PRODUCT"] == prod]
+        # Gráfico individual por producto (incluye línea en el título)
+        for code in top4_codes:
+            subset = ventas_diarias[ventas_diarias["PRODUCT"] == code]
+            label_line = code_to_line.get(code, '')
             plt.figure(figsize=(10, 5))
             plt.plot(subset["DATE"], subset["SALES"], marker="o")
-            plt.title(f"Ventas diarias - {prod}")
+            plt.title(f"Ventas diarias - {code} – {label_line}")
             plt.xlabel("Fecha")
             plt.ylabel("Ventas ($)")
             plt.xticks(rotation=45)
             plt.tight_layout()
-            fname = f"charts/ventas_diarias_{prod}.png"
+            fname = f"charts/ventas_diarias_{code}.png"
             plt.savefig(fname, dpi=150)
             plt.close()
             log(f"Gráfico individual guardado → {fname}")
