@@ -14,6 +14,7 @@ CONCLUSIONES   = "conclusiones.txt"
 TOP_N          = 10
 
 COL_PRODUCT    = "PRODUCTCODE"
+COL_LINE       = "PRODUCTLINE"
 COL_QTY        = "QUANTITYORDERED"
 COL_PRICE      = "PRICEEACH"
 COL_SALES      = "SALES"
