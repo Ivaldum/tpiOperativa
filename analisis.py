@@ -4,6 +4,7 @@ import sys
 from datetime import datetime
 import pandas as pd
 import matplotlib.pyplot as plt
+import graficos
 
 # ---------- Config ----------
 CSV_IN         = "sales_data_sample.csv"
@@ -223,6 +224,11 @@ def main():
     save_clean_dataset(df)
     analyze_top4_daily(df, tops.get("sales"))
     log("Análisis completado ✅")
+
+    graficos.cantidad_unidades_por_mes(df)
+    graficos.plot_cantidad_por_territorio(df)
+    graficos.plot_boxplot_precio(df)
+
 
 
 if __name__ == "__main__":
