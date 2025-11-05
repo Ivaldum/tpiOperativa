@@ -1,48 +1,225 @@
-[2025-10-29 17:06:02] Archivo CSV leído correctamente: sales_data_sample.csv (filas=2823)
-[2025-10-29 17:06:05] Exportado Excel RAW → sales_data_sample.xlsx (filas=2823)
-[2025-10-29 17:06:05] Valores nulos por columna (TOP 10):
-[2025-10-29 17:06:05]   - ADDRESSLINE2: 2521
-[2025-10-29 17:06:05]   - STATE: 1486
-[2025-10-29 17:06:05]   - TERRITORY: 1074
-[2025-10-29 17:06:05]   - POSTALCODE: 76
-[2025-10-29 17:06:05]   - SALES: 0
-[2025-10-29 17:06:05]   - QUANTITYORDERED: 0
-[2025-10-29 17:06:05]   - PRICEEACH: 0
-[2025-10-29 17:06:05]   - ORDERLINENUMBER: 0
-[2025-10-29 17:06:05]   - ORDERNUMBER: 0
-[2025-10-29 17:06:05]   - MONTH_ID: 0
-[2025-10-29 17:06:05] Guardado reporte de nulos → nulls_por_columna.csv
-[2025-10-29 17:06:05] Duplicados eliminados: 0
-[2025-10-29 17:06:05] Filas eliminadas por producto/cantidad inválida: 0
-[2025-10-29 17:06:05] Top 10 productos por unidades:
-[2025-10-29 17:06:05]   - S18_3232: 1774 unidades
-[2025-10-29 17:06:05]   - S24_3856: 1052 unidades
-[2025-10-29 17:06:05]   - S18_4600: 1031 unidades
-[2025-10-29 17:06:05]   - S700_4002: 1029 unidades
-[2025-10-29 17:06:05]   - S12_4473: 1024 unidades
-[2025-10-29 17:06:05]   - S24_3949: 1008 unidades
-[2025-10-29 17:06:05]   - S18_1097: 999 unidades
-[2025-10-29 17:06:05]   - S50_1341: 999 unidades
-[2025-10-29 17:06:05]   - S18_2432: 998 unidades
-[2025-10-29 17:06:05]   - S18_3856: 997 unidades
-[2025-10-29 17:06:05] Top 10 productos por ventas ($):
-[2025-10-29 17:06:05]   - S18_3232: $288,245.42
-[2025-10-29 17:06:05]   - S10_1949: $191,073.03
-[2025-10-29 17:06:05]   - S10_4698: $170,401.07
-[2025-10-29 17:06:05]   - S12_1108: $168,585.32
-[2025-10-29 17:06:05]   - S18_2238: $154,623.95
-[2025-10-29 17:06:05]   - S12_3891: $145,332.04
-[2025-10-29 17:06:05]   - S24_3856: $140,626.90
-[2025-10-29 17:06:05]   - S12_2823: $140,006.16
-[2025-10-29 17:06:05]   - S18_1662: $139,421.97
-[2025-10-29 17:06:05]   - S12_1099: $137,177.01
-[2025-10-29 17:06:05] Gráfico guardado → charts/top_10_productos_unidades.png
-[2025-10-29 17:06:06] Gráfico guardado → charts/top_10_productos_ventas.png
-[2025-10-29 17:06:08] Dataset limpio guardado → sales_data_sample_clean.csv y sales_data_sample_clean.xlsx (filas=2823)
-[2025-10-29 17:06:08] Guardado CSV → ventas_diarias_top4.csv
-[2025-10-29 17:06:09] Gráfico comparativo guardado → charts/ventas_diarias_top4_comparativo.png
-[2025-10-29 17:06:09] Gráfico individual guardado → charts/ventas_diarias_S18_3232.png
-[2025-10-29 17:06:09] Gráfico individual guardado → charts/ventas_diarias_S10_1949.png
-[2025-10-29 17:06:10] Gráfico individual guardado → charts/ventas_diarias_S10_4698.png
-[2025-10-29 17:06:10] Gráfico individual guardado → charts/ventas_diarias_S12_1108.png
-[2025-10-29 17:06:10] Análisis completado ✅
+[2025-11-05 18:07:53] Archivo CSV leído correctamente: sales_data_sample.csv (filas=2823)
+[2025-11-05 18:07:56] Exportado Excel RAW → sales_data_sample.xlsx (filas=2823)
+[2025-11-05 18:07:56] Valores nulos por columna (TOP 10):
+[2025-11-05 18:07:56]   - ADDRESSLINE2: 2521
+[2025-11-05 18:07:56]   - STATE: 1486
+[2025-11-05 18:07:56]   - TERRITORY: 1074
+[2025-11-05 18:07:56]   - POSTALCODE: 76
+[2025-11-05 18:07:56]   - SALES: 0
+[2025-11-05 18:07:56]   - QUANTITYORDERED: 0
+[2025-11-05 18:07:56]   - PRICEEACH: 0
+[2025-11-05 18:07:56]   - ORDERLINENUMBER: 0
+[2025-11-05 18:07:56]   - ORDERNUMBER: 0
+[2025-11-05 18:07:56]   - MONTH_ID: 0
+[2025-11-05 18:07:56] Guardado reporte de nulos → nulls_por_columna.csv
+[2025-11-05 18:07:56] Duplicados eliminados: 0
+[2025-11-05 18:07:56] Filas eliminadas por producto/cantidad inválida: 0
+[2025-11-05 18:07:56] Top 10 productos por unidades:
+[2025-11-05 18:07:56]   - S18_3232: 1774 unidades
+[2025-11-05 18:07:56]   - S24_3856: 1052 unidades
+[2025-11-05 18:07:56]   - S18_4600: 1031 unidades
+[2025-11-05 18:07:56]   - S700_4002: 1029 unidades
+[2025-11-05 18:07:56]   - S12_4473: 1024 unidades
+[2025-11-05 18:07:56]   - S24_3949: 1008 unidades
+[2025-11-05 18:07:56]   - S18_1097: 999 unidades
+[2025-11-05 18:07:56]   - S50_1341: 999 unidades
+[2025-11-05 18:07:56]   - S18_2432: 998 unidades
+[2025-11-05 18:07:56]   - S18_3856: 997 unidades
+[2025-11-05 18:07:56] Top 10 productos por ventas ($):
+[2025-11-05 18:07:56]   - S18_3232: $288,245.42
+[2025-11-05 18:07:56]   - S10_1949: $191,073.03
+[2025-11-05 18:07:56]   - S10_4698: $170,401.07
+[2025-11-05 18:07:56]   - S12_1108: $168,585.32
+[2025-11-05 18:07:56]   - S18_2238: $154,623.95
+[2025-11-05 18:07:56]   - S12_3891: $145,332.04
+[2025-11-05 18:07:56]   - S24_3856: $140,626.90
+[2025-11-05 18:07:56]   - S12_2823: $140,006.16
+[2025-11-05 18:07:56]   - S18_1662: $139,421.97
+[2025-11-05 18:07:56]   - S12_1099: $137,177.01
+[2025-11-05 18:07:57] Gráfico guardado → charts/top_10_productos_unidades.png
+[2025-11-05 18:07:58] Gráfico guardado → charts/top_10_productos_ventas.png
+[2025-11-05 18:08:01] Dataset limpio guardado → sales_data_sample_clean.csv y sales_data_sample_clean.xlsx (filas=2823)
+[2025-11-05 18:08:01] Guardado CSV → ventas_diarias_top4.csv
+[2025-11-05 18:08:03] Gráfico comparativo guardado → charts/ventas_diarias_top4_comparativo.png
+[2025-11-05 18:08:04] Gráfico individual guardado → charts/ventas_diarias_S18_3232.png
+[2025-11-05 18:08:04] Gráfico individual guardado → charts/ventas_diarias_S10_1949.png
+[2025-11-05 18:08:05] Gráfico individual guardado → charts/ventas_diarias_S10_4698.png
+[2025-11-05 18:08:05] Gráfico individual guardado → charts/ventas_diarias_S12_1108.png
+[2025-11-05 18:08:05] Análisis ABC guardado → analisis_abc_productos.csv
+[2025-11-05 18:08:06] Gráfico de Análisis ABC guardado → charts/analisis_abc_productos.png
+[2025-11-05 18:08:06] Categoría A: 67.89% del total de productos
+[2025-11-05 18:08:06] Categoría B: 22.02% del total de productos
+[2025-11-05 18:08:06] Categoría C: 10.09% del total de productos
+[2025-11-05 18:08:06] Análisis ABC guardado → analisis_abc_productos.csv
+[2025-11-05 18:08:06] Gráfico de Análisis ABC guardado → charts/analisis_abc_productos.png
+[2025-11-05 18:08:06] Categoría A: 67.89% del total de productos
+[2025-11-05 18:08:06] Categoría B: 22.02% del total de productos
+[2025-11-05 18:08:06] Categoría C: 10.09% del total de productos
+[2025-11-05 18:11:15] Archivo CSV leído correctamente: sales_data_sample.csv (filas=2823)
+[2025-11-05 18:11:18] Exportado Excel RAW → sales_data_sample.xlsx (filas=2823)
+[2025-11-05 18:11:18] Valores nulos por columna (TOP 10):
+[2025-11-05 18:11:18]   - ADDRESSLINE2: 2521
+[2025-11-05 18:11:18]   - STATE: 1486
+[2025-11-05 18:11:18]   - TERRITORY: 1074
+[2025-11-05 18:11:18]   - POSTALCODE: 76
+[2025-11-05 18:11:18]   - SALES: 0
+[2025-11-05 18:11:18]   - QUANTITYORDERED: 0
+[2025-11-05 18:11:18]   - PRICEEACH: 0
+[2025-11-05 18:11:18]   - ORDERLINENUMBER: 0
+[2025-11-05 18:11:18]   - ORDERNUMBER: 0
+[2025-11-05 18:11:18]   - MONTH_ID: 0
+[2025-11-05 18:11:18] Guardado reporte de nulos → nulls_por_columna.csv
+[2025-11-05 18:11:18] Duplicados eliminados: 0
+[2025-11-05 18:11:18] Filas eliminadas por producto/cantidad inválida: 0
+[2025-11-05 18:11:18] Top 10 productos por unidades:
+[2025-11-05 18:11:18]   - S18_3232: 1774 unidades
+[2025-11-05 18:11:18]   - S24_3856: 1052 unidades
+[2025-11-05 18:11:18]   - S18_4600: 1031 unidades
+[2025-11-05 18:11:18]   - S700_4002: 1029 unidades
+[2025-11-05 18:11:18]   - S12_4473: 1024 unidades
+[2025-11-05 18:11:18]   - S24_3949: 1008 unidades
+[2025-11-05 18:11:18]   - S18_1097: 999 unidades
+[2025-11-05 18:11:18]   - S50_1341: 999 unidades
+[2025-11-05 18:11:18]   - S18_2432: 998 unidades
+[2025-11-05 18:11:18]   - S18_3856: 997 unidades
+[2025-11-05 18:11:18] Top 10 productos por ventas ($):
+[2025-11-05 18:11:18]   - S18_3232: $288,245.42
+[2025-11-05 18:11:18]   - S10_1949: $191,073.03
+[2025-11-05 18:11:18]   - S10_4698: $170,401.07
+[2025-11-05 18:11:18]   - S12_1108: $168,585.32
+[2025-11-05 18:11:18]   - S18_2238: $154,623.95
+[2025-11-05 18:11:18]   - S12_3891: $145,332.04
+[2025-11-05 18:11:18]   - S24_3856: $140,626.90
+[2025-11-05 18:11:18]   - S12_2823: $140,006.16
+[2025-11-05 18:11:18]   - S18_1662: $139,421.97
+[2025-11-05 18:11:18]   - S12_1099: $137,177.01
+[2025-11-05 18:11:19] Gráfico guardado → charts/top_10_productos_unidades.png
+[2025-11-05 18:11:19] Gráfico guardado → charts/top_10_productos_ventas.png
+[2025-11-05 18:11:21] Dataset limpio guardado → sales_data_sample_clean.csv y sales_data_sample_clean.xlsx (filas=2823)
+[2025-11-05 18:11:21] Guardado CSV → ventas_diarias_top4.csv
+[2025-11-05 18:11:22] Gráfico comparativo guardado → charts/ventas_diarias_top4_comparativo.png
+[2025-11-05 18:11:22] Gráfico individual guardado → charts/ventas_diarias_S18_3232.png
+[2025-11-05 18:11:23] Gráfico individual guardado → charts/ventas_diarias_S10_1949.png
+[2025-11-05 18:11:23] Gráfico individual guardado → charts/ventas_diarias_S10_4698.png
+[2025-11-05 18:11:23] Gráfico individual guardado → charts/ventas_diarias_S12_1108.png
+[2025-11-05 18:11:23] Análisis ABC guardado → analisis_abc_productos.csv
+[2025-11-05 18:11:24] Gráfico de Análisis ABC guardado → charts/analisis_abc_productos.png
+[2025-11-05 18:11:24] Categoría A: 67.89% del total de productos
+[2025-11-05 18:11:24] Categoría B: 22.02% del total de productos
+[2025-11-05 18:11:24] Categoría C: 10.09% del total de productos
+[2025-11-05 18:11:24] Análisis ABC guardado → analisis_abc_productos.csv
+[2025-11-05 18:11:24] Gráfico de Análisis ABC guardado → charts/analisis_abc_productos.png
+[2025-11-05 18:11:24] Categoría A: 67.89% del total de productos
+[2025-11-05 18:11:24] Categoría B: 22.02% del total de productos
+[2025-11-05 18:11:24] Categoría C: 10.09% del total de productos
+[2025-11-05 18:13:22] Archivo CSV leído correctamente: sales_data_sample.csv (filas=2823)
+[2025-11-05 18:13:24] Exportado Excel RAW → sales_data_sample.xlsx (filas=2823)
+[2025-11-05 18:13:24] Valores nulos por columna (TOP 10):
+[2025-11-05 18:13:24]   - ADDRESSLINE2: 2521
+[2025-11-05 18:13:24]   - STATE: 1486
+[2025-11-05 18:13:24]   - TERRITORY: 1074
+[2025-11-05 18:13:24]   - POSTALCODE: 76
+[2025-11-05 18:13:24]   - SALES: 0
+[2025-11-05 18:13:24]   - QUANTITYORDERED: 0
+[2025-11-05 18:13:24]   - PRICEEACH: 0
+[2025-11-05 18:13:24]   - ORDERLINENUMBER: 0
+[2025-11-05 18:13:24]   - ORDERNUMBER: 0
+[2025-11-05 18:13:24]   - MONTH_ID: 0
+[2025-11-05 18:13:24] Guardado reporte de nulos → nulls_por_columna.csv
+[2025-11-05 18:13:24] Duplicados eliminados: 0
+[2025-11-05 18:13:24] Filas eliminadas por producto/cantidad inválida: 0
+[2025-11-05 18:13:24] Top 10 productos por unidades:
+[2025-11-05 18:13:24]   - S18_3232: 1774 unidades
+[2025-11-05 18:13:24]   - S24_3856: 1052 unidades
+[2025-11-05 18:13:24]   - S18_4600: 1031 unidades
+[2025-11-05 18:13:24]   - S700_4002: 1029 unidades
+[2025-11-05 18:13:24]   - S12_4473: 1024 unidades
+[2025-11-05 18:13:24]   - S24_3949: 1008 unidades
+[2025-11-05 18:13:24]   - S18_1097: 999 unidades
+[2025-11-05 18:13:24]   - S50_1341: 999 unidades
+[2025-11-05 18:13:24]   - S18_2432: 998 unidades
+[2025-11-05 18:13:24]   - S18_3856: 997 unidades
+[2025-11-05 18:13:24] Top 10 productos por ventas ($):
+[2025-11-05 18:13:24]   - S18_3232: $288,245.42
+[2025-11-05 18:13:24]   - S10_1949: $191,073.03
+[2025-11-05 18:13:24]   - S10_4698: $170,401.07
+[2025-11-05 18:13:24]   - S12_1108: $168,585.32
+[2025-11-05 18:13:24]   - S18_2238: $154,623.95
+[2025-11-05 18:13:24]   - S12_3891: $145,332.04
+[2025-11-05 18:13:24]   - S24_3856: $140,626.90
+[2025-11-05 18:13:24]   - S12_2823: $140,006.16
+[2025-11-05 18:13:24]   - S18_1662: $139,421.97
+[2025-11-05 18:13:24]   - S12_1099: $137,177.01
+[2025-11-05 18:13:25] Gráfico guardado → charts/top_10_productos_unidades.png
+[2025-11-05 18:13:25] Gráfico guardado → charts/top_10_productos_ventas.png
+[2025-11-05 18:13:27] Dataset limpio guardado → sales_data_sample_clean.csv y sales_data_sample_clean.xlsx (filas=2823)
+[2025-11-05 18:13:27] Guardado CSV → ventas_diarias_top4.csv
+[2025-11-05 18:13:28] Gráfico comparativo guardado → charts/ventas_diarias_top4_comparativo.png
+[2025-11-05 18:13:28] Gráfico individual guardado → charts/ventas_diarias_S18_3232.png
+[2025-11-05 18:13:29] Gráfico individual guardado → charts/ventas_diarias_S10_1949.png
+[2025-11-05 18:13:29] Gráfico individual guardado → charts/ventas_diarias_S10_4698.png
+[2025-11-05 18:13:29] Gráfico individual guardado → charts/ventas_diarias_S12_1108.png
+[2025-11-05 18:13:29] Análisis ABC guardado → analisis_abc_productos.csv
+[2025-11-05 18:13:30] Gráfico de Análisis ABC guardado → charts/analisis_abc_productos.png
+[2025-11-05 18:13:30] Categoría A: 67.89% del total de productos
+[2025-11-05 18:13:30] Categoría B: 22.02% del total de productos
+[2025-11-05 18:13:30] Categoría C: 10.09% del total de productos
+[2025-11-05 18:13:30] Análisis ABC guardado → analisis_abc_productos.csv
+[2025-11-05 18:13:30] Gráfico de Análisis ABC guardado → charts/analisis_abc_productos.png
+[2025-11-05 18:13:30] Categoría A: 67.89% del total de productos
+[2025-11-05 18:13:30] Categoría B: 22.02% del total de productos
+[2025-11-05 18:13:30] Categoría C: 10.09% del total de productos
+[2025-11-05 18:13:30] Análisis completado ✅
+[2025-11-05 18:14:11] Archivo CSV leído correctamente: sales_data_sample.csv (filas=2823)
+[2025-11-05 18:14:13] Exportado Excel RAW → sales_data_sample.xlsx (filas=2823)
+[2025-11-05 18:14:13] Valores nulos por columna (TOP 10):
+[2025-11-05 18:14:13]   - ADDRESSLINE2: 2521
+[2025-11-05 18:14:13]   - STATE: 1486
+[2025-11-05 18:14:13]   - TERRITORY: 1074
+[2025-11-05 18:14:13]   - POSTALCODE: 76
+[2025-11-05 18:14:13]   - SALES: 0
+[2025-11-05 18:14:13]   - QUANTITYORDERED: 0
+[2025-11-05 18:14:13]   - PRICEEACH: 0
+[2025-11-05 18:14:13]   - ORDERLINENUMBER: 0
+[2025-11-05 18:14:13]   - ORDERNUMBER: 0
+[2025-11-05 18:14:13]   - MONTH_ID: 0
+[2025-11-05 18:14:13] Guardado reporte de nulos → nulls_por_columna.csv
+[2025-11-05 18:14:13] Duplicados eliminados: 0
+[2025-11-05 18:14:13] Filas eliminadas por producto/cantidad inválida: 0
+[2025-11-05 18:14:13] Top 10 productos por unidades:
+[2025-11-05 18:14:13]   - S18_3232: 1774 unidades
+[2025-11-05 18:14:13]   - S24_3856: 1052 unidades
+[2025-11-05 18:14:13]   - S18_4600: 1031 unidades
+[2025-11-05 18:14:13]   - S700_4002: 1029 unidades
+[2025-11-05 18:14:13]   - S12_4473: 1024 unidades
+[2025-11-05 18:14:13]   - S24_3949: 1008 unidades
+[2025-11-05 18:14:13]   - S18_1097: 999 unidades
+[2025-11-05 18:14:13]   - S50_1341: 999 unidades
+[2025-11-05 18:14:13]   - S18_2432: 998 unidades
+[2025-11-05 18:14:13]   - S18_3856: 997 unidades
+[2025-11-05 18:14:13] Top 10 productos por ventas ($):
+[2025-11-05 18:14:13]   - S18_3232: $288,245.42
+[2025-11-05 18:14:13]   - S10_1949: $191,073.03
+[2025-11-05 18:14:13]   - S10_4698: $170,401.07
+[2025-11-05 18:14:13]   - S12_1108: $168,585.32
+[2025-11-05 18:14:13]   - S18_2238: $154,623.95
+[2025-11-05 18:14:13]   - S12_3891: $145,332.04
+[2025-11-05 18:14:13]   - S24_3856: $140,626.90
+[2025-11-05 18:14:13]   - S12_2823: $140,006.16
+[2025-11-05 18:14:13]   - S18_1662: $139,421.97
+[2025-11-05 18:14:13]   - S12_1099: $137,177.01
+[2025-11-05 18:14:13] Gráfico guardado → charts/top_10_productos_unidades.png
+[2025-11-05 18:14:14] Gráfico guardado → charts/top_10_productos_ventas.png
+[2025-11-05 18:14:16] Dataset limpio guardado → sales_data_sample_clean.csv y sales_data_sample_clean.xlsx (filas=2823)
+[2025-11-05 18:14:16] Guardado CSV → ventas_diarias_top4.csv
+[2025-11-05 18:14:16] Gráfico comparativo guardado → charts/ventas_diarias_top4_comparativo.png
+[2025-11-05 18:14:16] Gráfico individual guardado → charts/ventas_diarias_S18_3232.png
+[2025-11-05 18:14:17] Gráfico individual guardado → charts/ventas_diarias_S10_1949.png
+[2025-11-05 18:14:17] Gráfico individual guardado → charts/ventas_diarias_S10_4698.png
+[2025-11-05 18:14:17] Gráfico individual guardado → charts/ventas_diarias_S12_1108.png
+[2025-11-05 18:14:17] Análisis ABC guardado → analisis_abc_productos.csv
+[2025-11-05 18:14:17] Gráfico de Análisis ABC guardado → charts/analisis_abc_productos.png
+[2025-11-05 18:14:17] Categoría A: 67.89% del total de productos
+[2025-11-05 18:14:17] Categoría B: 22.02% del total de productos
+[2025-11-05 18:14:17] Categoría C: 10.09% del total de productos
+[2025-11-05 18:14:17] Análisis completado ✅

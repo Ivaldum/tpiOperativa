@@ -1,8 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import calendar
-
-
+import os
 
 def cantidad_unidades_por_mes(df):
     # Definir las líneas de producto de interés
@@ -127,4 +126,5 @@ def plot_boxplot_precio(df):
     plt.grid(axis='y', linestyle='--', alpha=0.6)
     plt.tight_layout()
     plt.show()
+
 

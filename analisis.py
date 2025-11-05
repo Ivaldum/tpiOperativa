@@ -211,6 +211,64 @@ def analyze_top4_daily(df: pd.DataFrame, top_sales):
         plt.close()
         log(f"Gráfico individual guardado → {fname}")
 
+# ---------- Análisis abc ----------
+def analisis_abc(df: pd.DataFrame):
+    """
+    Realiza el análisis ABC basado en las ventas totales por producto.
+    Genera un CSV con la clasificación y un gráfico acumulativo.
+    """
+    ensure_columns(df, [COL_PRODUCT, COL_SALES])
+
+    # Agrupar ventas totales por producto
+    ventas_por_producto = (
+        df.groupby(COL_PRODUCT)[COL_SALES]
+          .sum()
+          .sort_values(ascending=False)
+          .reset_index()
+    )
+
+    # Calcular el porcentaje y acumulado sobre el total
+    total_ventas = ventas_por_producto[COL_SALES].sum()
+    ventas_por_producto["%_del_total"] = ventas_por_producto[COL_SALES] / total_ventas * 100
+    ventas_por_producto["%_acumulado"] = ventas_por_producto["%_del_total"].cumsum()
+
+    # Clasificar según el % acumulado
+    def clasificar_abc(pct_acum):
+        if pct_acum <= 80:
+            return "A"
+        elif pct_acum <= 95:
+            return "B"
+        else:
+            return "C"
+        
+    ventas_por_producto["CLASIFICACION_ABC"] = ventas_por_producto["%_acumulado"].apply(clasificar_abc)
+
+    # Guardar resultados
+    ventas_por_producto.to_csv("analisis_abc_productos.csv", index=False)
+    log("Análisis ABC guardado → analisis_abc_productos.csv")
+
+    # --- Gráfico acumulativo ---
+    os.makedirs("charts", exist_ok=True)
+    plt.figure(figsize=(10, 6))
+    plt.plot(ventas_por_producto["%_acumulado"], marker='o')
+    plt.axhline(y=80, color='g', linestyle='--', label='Límite A (80%)')
+    plt.axhline(y=95, color='orange', linestyle='--', label='Límite B (95%)')
+    plt.title("Análisis ABC de Productos")
+    plt.xlabel("Ranking de Productos")
+    plt.ylabel("% Acumulado de Ventas")
+    plt.legend()
+    plt.grid(True, linestyle='--', alpha=0.7)
+    plt.tight_layout()
+    plt.savefig("charts/analisis_abc_productos.png", dpi=150)
+    plt.close()
+    log("Gráfico de Análisis ABC guardado → charts/analisis_abc_productos.png")
+
+    # mostrar resumen
+    resumen = ventas_por_producto["CLASIFICACION_ABC"].value_counts(normalize=True) * 100
+    for cat, pct in resumen.items():
+        log(f"Categoría {cat}: {pct:.2f}% del total de productos")
+    
+    return ventas_por_producto
 
 # ---------- Función principal ----------
 
@@ -223,6 +281,10 @@ def main():
     plot_top_products(tops.get("qty"), tops.get("sales"), TOP_N)
     save_clean_dataset(df)
     analyze_top4_daily(df, tops.get("sales"))
+   
+    #analisis abc
+    analisis_abc(df)
+    
     log("Análisis completado ✅")
 
     graficos.cantidad_unidades_por_mes(df)
