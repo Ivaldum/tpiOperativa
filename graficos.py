@@ -94,6 +94,11 @@ def plot_cantidad_por_territorio(df):
     plt.grid(axis='y', linestyle='--', alpha=0.6)
     plt.tight_layout()
     plt.show()
+    
+    # Guardar el gráfico    
+    nombre_archivo = f'cantidad_por_territorio.png'
+    plt.savefig(nombre_archivo)
+    plt.close() # Cierra la figur
 
 def plot_boxplot_precio(df):
     """
@@ -126,5 +131,10 @@ def plot_boxplot_precio(df):
     plt.grid(axis='y', linestyle='--', alpha=0.6)
     plt.tight_layout()
     plt.show()
+    
+    # Guardar el gráfico
+    nombre_archivo = f'boxplot_precio.png'
+    plt.savefig(nombre_archivo)
+    plt.close() # Cierra la figur
 
 

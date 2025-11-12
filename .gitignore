@@ -9,4 +9,5 @@ __pycache__/
 *.log
 *.xlsx
 *.csv
+*.png
 charts/
